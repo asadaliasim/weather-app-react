@@ -22,8 +22,8 @@ function GoogleHeader() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/cards" className="menu">
-                Cards
+              <NavLink to="/weatherdata" className="menu">
+                WeatherData
               </NavLink>
             </li>
           </ul>

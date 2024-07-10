@@ -1,19 +1,20 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import ContentHolder from '../components/ContentHolder';
-import CardHolder from '../components/CardHolder';
 import { Layout } from '../components/layout';
+import SearchPage from '../pages/SearchPage';
+import WeatherData from '../pages/WeaherData';
+
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
         path: '/',
-        element: <ContentHolder />,
+        element: <SearchPage />,
       },
       {
-        path: 'cards',
-        element: <CardHolder />,
+        path: 'weatherdata',
+        element: <WeatherData />,
       },
       {
         path: '*',
