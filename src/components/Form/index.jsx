@@ -1,26 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import Button from '../Button';
-import { Flex, Input, Text } from '@chakra-ui/react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWeatherData } from '../../features/weatherData/weatherDataActions';
+import {
+  Flex,
+  Input,
+  Text,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  Image,
+} from '@chakra-ui/react';
 
 function Form() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getWeatherData());
-  }, [dispatch]);
 
-  const { weatherData } = useSelector((state) => state.weather);
-  console.log(weatherData);
+  //  need to handle for rejection as well
+
+  const weatherData = useSelector((state) => state.weather.weather);
+  const temp = weatherData.main?.temp;
+  const icon = weatherData.weather?.[0].icon;
+  const imageUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+  const weatherDescription = weatherData.weather?.[0].description;
 
   const [inputValue, setInputValue] = useState('');
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleNameChange = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleClick = () => {
-    setInputValue(inputValue);
+    dispatch(getWeatherData(inputValue));
+    onOpen();
   };
 
   return (
@@ -41,12 +57,31 @@ function Form() {
           placeholder="Enter City Name"
           onChange={handleNameChange}
         />
-        <Button
-          onClick={handleClick}
-          text={'Search'}
-          backgroundColor={'green'}
-        />
+        <Button onClick={handleClick} backgroundColor={'green'} color={'white'}>
+          Search
+        </Button>
       </Flex>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Weather Data</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {weatherData ? (
+              <>
+                <Text>
+                  Temperature: {temp}°C
+                  <br />
+                  Description: {weatherDescription}
+                </Text>
+                <Image src={imageUrl} alt="Weather Icon" />
+              </>
+            ) : (
+              <Text>Loading...</Text>
+            )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
