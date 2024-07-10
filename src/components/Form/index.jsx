@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button';
 import { Flex, Input, Text } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getWeatherData } from '../../features/weatherData/weatherDataActions';
 
 function Form() {
-  // const [inputValue, setInputValue] = useState('');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getWeatherData());
+  }, [dispatch]);
 
-  // const handleNameChange = (e) => {
-  //   setInputValue(e.target.value);
-  // };
+  const { weatherData } = useSelector((state) => state.weather);
+  console.log(weatherData);
+
+  const [inputValue, setInputValue] = useState('');
+
+  const handleNameChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
   const handleClick = () => {
-    // setName(inputValue);
+    setInputValue(inputValue);
   };
 
   return (
@@ -29,6 +39,7 @@ function Form() {
           htmlSize={40}
           width="auto"
           placeholder="Enter City Name"
+          onChange={handleNameChange}
         />
         <Button
           onClick={handleClick}
@@ -36,8 +47,6 @@ function Form() {
           backgroundColor={'green'}
         />
       </Flex>
-
-      {/* btn div */}
     </>
   );
 }
