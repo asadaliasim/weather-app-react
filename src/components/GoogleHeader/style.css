@@ -1,0 +1,64 @@
+.section-two {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  justify-content: end;
+}
+.main-container {
+  height: 6vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  margin-right: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.images {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.image-text {
+  margin-left: -5px;
+}
+.profile-image {
+  margin-top: 2px;
+  height: 34px;
+  width: 34px;
+  border-radius: 20px;
+}
+span {
+  margin-right: 25px;
+  font: 13px/27px Roboto, Arial, sans-serif;
+  font-weight: lighter;
+}
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.hamburger {
+  margin-right: 25px;
+}
+svg {
+  margin-right: 25px;
+}
+
+.menu {
+  text-decoration: none;
+  color: black;
+}
+li {
+  list-style: none;
+}
+ul {
+  display: flex;
+  gap: 10px;
+  justify-content: start !important;
+  align-items: center;
+}
+.active {
+  text-decoration: none;
+  color: rgb(56, 1, 1);
+}

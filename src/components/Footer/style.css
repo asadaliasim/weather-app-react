@@ -1,0 +1,24 @@
+.footer {
+  background-color: #f2f2f2;
+  font-size: 15px;
+  height: 14vh;
+  color: #1f1f1f;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+  height: 40%;
+}
+.location {
+  padding: 15px 30px;
+  border-bottom: solid #dadce0 1px;
+}
+.sub-section-one a,
+.sub-section-two a {
+  padding: 15px;
+}
