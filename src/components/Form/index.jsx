@@ -70,9 +70,9 @@ function Form() {
             {weatherData ? (
               <>
                 <Text>
-                  Temperature: {temp}°C
+                  The Weather is currently: {weatherDescription}
                   <br />
-                  Description: {weatherDescription}
+                  The Temperature in {inputValue} is ${temp} Degrees Celsius
                 </Text>
                 <Image src={imageUrl} alt="Weather Icon" />
               </>
