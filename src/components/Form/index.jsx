@@ -83,7 +83,7 @@ function Form() {
                     The Weather is currently:{weatherDescription}
                   </Text>
                   <Text>
-                    The Temperature in {inputValue} is ${temp} Degrees Celsius
+                    The Temperature in {inputValue} is {temp} Degrees Celsius
                   </Text>
                   <Text> Below is the Visual illustration of weather</Text>
                 </Stack>
