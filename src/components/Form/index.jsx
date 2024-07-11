@@ -43,8 +43,8 @@ function Form() {
   };
 
   return (
-    <>
-      <Flex justify="center" mb={'10px'}>
+    <div style={{ height: '74vh' }}>
+      <Flex justify="center" mb={'20px'}>
         <Text fontSize="4xl">Welcome to Weather App</Text>
       </Flex>
       <Flex justify="center" mb={'10px'}>
@@ -52,7 +52,7 @@ function Form() {
           Enter the Name of your City to get weather Info
         </Text>
       </Flex>
-      <Flex justify="center">
+      <Flex mt={'60px'} justify="center">
         <Input
           mr="4px"
           htmlSize={40}
@@ -101,7 +101,7 @@ function Form() {
           </ModalBody>
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 }
 
