@@ -14,12 +14,14 @@ import {
   useDisclosure,
   Button,
   Image,
+  Stack,
 } from '@chakra-ui/react';
 
 function Form() {
   const dispatch = useDispatch();
 
   //  need to handle for rejection as well
+  const status = useSelector((state) => state.weather);
 
   const weatherData = useSelector((state) => state.weather.weather);
   const temp = weatherData.main?.temp;
@@ -35,6 +37,7 @@ function Form() {
   };
 
   const handleClick = () => {
+    if (inputValue === '' || null) return;
     dispatch(getWeatherData(inputValue));
     onOpen();
   };
@@ -63,21 +66,37 @@ function Form() {
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+          maxW="600px"
+          maxH="800px"
+          sx={{ width: '80vw', height: '80vh' }}
+        >
           <ModalHeader>Weather Data</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {weatherData ? (
+            {status.isWeatherDataLoading && <Text>Loading...</Text>}
+
+            {status.isWeatherDataFullfilled && (
               <>
-                <Text>
-                  The Weather is currently: {weatherDescription}
-                  <br />
-                  The Temperature in {inputValue} is ${temp} Degrees Celsius
-                </Text>
+                <Stack spacing={3}>
+                  <Text as="b" fontSize="xl">
+                    The Weather is currently:{weatherDescription}
+                  </Text>
+                  <Text>
+                    The Temperature in {inputValue} is ${temp} Degrees Celsius
+                  </Text>
+                  <Text> Below is the Visual illustration of weather</Text>
+                </Stack>
+
                 <Image src={imageUrl} alt="Weather Icon" />
               </>
-            ) : (
-              <Text>Loading...</Text>
+            )}
+            {status.isWeatherDataRejected && (
+              <Text>
+                City {inputValue} does not exist
+                <br />
+                please enter a valid city name
+              </Text>
             )}
           </ModalBody>
         </ModalContent>
